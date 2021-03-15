@@ -1,23 +1,21 @@
 package BasicAssignments;
 
-import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 
-public class Assignment1 {
+public class Assignment3 {
 	public static WebDriver oBrowser=null;
+
 	public static void main(String[] args) {
-		
 		launchBrowser();
 		navigate();
 		login();
 		Minimize();
-		CreateUser();
-		delete();
+		CreateCustomer();
+		DeleteCustomer();
 		logout();
 		CloseApplication();
-		
 
 	}
 	public static void launchBrowser()
@@ -66,52 +64,47 @@ public class Assignment1 {
 			e.printStackTrace();
 		}
 	}
-	public static void CreateUser()
+	public static void CreateCustomer()
 	{
-		try 
+		try
 		{
-			oBrowser.findElement(By.xpath("//*[@id=\'topnav\']/tbody/tr[1]/td[5]/a/div[2]")).click();
+			oBrowser.findElement(By.xpath("//*[@id=\'topnav\']/tbody/tr/td[3]/a/div[2]")).click();
 			Thread.sleep(2000);
-			oBrowser.findElement(By.xpath("//*[@id='createUserDiv']/div/div[2]")).click();
+			oBrowser.findElement(By.xpath("//*[@id=\'cpTreeBlock\']/div[2]/div[1]/div[2]/div/div[2]")).click();
 			Thread.sleep(2000);
-			oBrowser.findElement(By.name("firstName")).sendKeys("User");
-			oBrowser.findElement(By.name("lastName")).sendKeys("demo");
-			oBrowser.findElement(By.name("email")).sendKeys("Userdemo@email.com");
-			oBrowser.findElement(By.name("username")).sendKeys("Admin1");
-			oBrowser.findElement(By.name("password")).sendKeys("User");
-			oBrowser.findElement(By.name("passwordCopy")).sendKeys("User");
-			oBrowser.findElement(By.xpath("//*[@id=\'userDataLightBox_commitBtn\']/div/span")).click();
-			Thread.sleep(4000);
+			oBrowser.findElement(By.xpath("/html/body/div[14]/div[1]")).click();
+			Thread.sleep(2000);
+			oBrowser.findElement(By.xpath("//*[@id=\'customerLightBox_nameField\']")).sendKeys("Customer 1");
+			oBrowser.findElement(By.xpath("//*[@id=\'customerLightBox_commitBtn\']/div/span")).click();
+			Thread.sleep(2000);
 		}catch(Exception e)
 		{
 			e.printStackTrace();
 		}
 	}
-	public static void delete()
+	public static void DeleteCustomer()
 	{
 		try
 		{
-			oBrowser.findElement(By.xpath("//*[@id=\'userListTableContainer\']/table/tbody/tr[2]/td[1]/table")).click();
+			oBrowser.findElement(By.xpath("//*[@id=\'cpTreeBlock\']/div[2]/div[2]/div/div[2]/div/div[1]/div[2]/div[2]/div[4]")).click();
 			Thread.sleep(2000);
-			oBrowser.findElement(By.xpath("//*[@id=\'userDataLightBox_deleteBtn\']")).click();
+			oBrowser.findElement(By.xpath("//*[@id=\'taskListBlock\']/div[2]/div[1]/div[4]/div/div")).click();
 			Thread.sleep(2000);
-			Alert oAlert=oBrowser.switchTo().alert();
-			String textcontent=oAlert.getText();
-			System.out.println(textcontent);
-			oAlert.accept();
+			oBrowser.findElement(By.xpath("//*[@id=\"taskListBlock\"]/div[2]/div[4]/div/div[3]/div")).click();
 			Thread.sleep(2000);
-		}catch (Exception e)
+			oBrowser.findElement(By.xpath("//*[@id=\'customerPanel_deleteConfirm_submitTitle\']")).click();
+		}catch(Exception e)
 		{
 			e.printStackTrace();
-		}	
+		}
 	}
 	public static void logout()
 	{
 		try
 		{
 			oBrowser.findElement(By.xpath("//*[@id=\'logoutLink\']")).click();
-			Thread.sleep(2000);
-		}catch (Exception e)
+			
+		}catch(Exception e)
 		{
 			e.printStackTrace();
 		}
@@ -126,5 +119,5 @@ public class Assignment1 {
 			e.printStackTrace();
 		}
 	}
-	
+
 }

@@ -5,20 +5,19 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 
-public class Assignment1 {
+public class Assignment2 {
 	public static WebDriver oBrowser=null;
+
 	public static void main(String[] args) {
-		
 		launchBrowser();
 		navigate();
 		login();
 		Minimize();
 		CreateUser();
-		delete();
-		logout();
-		CloseApplication();
-		
-
+		modifyCustomer();
+		deleteuser();
+		//logout();
+		//CloseApplication();
 	}
 	public static void launchBrowser()
 	{
@@ -87,11 +86,27 @@ public class Assignment1 {
 			e.printStackTrace();
 		}
 	}
-	public static void delete()
+	public static void modifyCustomer() 
+	{
+		try 
+		{
+			oBrowser.findElement(By.xpath("//*[@id=\'userListTableContainer\']/table/tbody/tr[2]/td[1]/table/tbody/tr/td/div[1]")).click();
+			Thread.sleep(2000);
+			oBrowser.findElement(By.name("username")).clear();
+			Thread.sleep(2000);
+			oBrowser.findElement(By.name("username")).sendKeys("Sample user");
+			oBrowser.findElement(By.xpath("//*[@id=\'userDataLightBox_commitBtn\']/div/span")).click();
+			
+		}catch(Exception e) 
+		{
+			e.printStackTrace();
+		}
+	}
+	public static void deleteuser()
 	{
 		try
 		{
-			oBrowser.findElement(By.xpath("//*[@id=\'userListTableContainer\']/table/tbody/tr[2]/td[1]/table")).click();
+			oBrowser.findElement(By.xpath("//*[@id=\'userListTableContainer\']/table/tbody/tr[2]/td[1]/table/tbody/tr/td/div[1]")).click();
 			Thread.sleep(2000);
 			oBrowser.findElement(By.xpath("//*[@id=\'userDataLightBox_deleteBtn\']")).click();
 			Thread.sleep(2000);
@@ -100,18 +115,17 @@ public class Assignment1 {
 			System.out.println(textcontent);
 			oAlert.accept();
 			Thread.sleep(2000);
-		}catch (Exception e)
+		}catch(Exception e)
 		{
 			e.printStackTrace();
-		}	
+		}
 	}
 	public static void logout()
 	{
 		try
 		{
 			oBrowser.findElement(By.xpath("//*[@id=\'logoutLink\']")).click();
-			Thread.sleep(2000);
-		}catch (Exception e)
+		}catch(Exception e)
 		{
 			e.printStackTrace();
 		}
@@ -126,5 +140,4 @@ public class Assignment1 {
 			e.printStackTrace();
 		}
 	}
-	
 }
